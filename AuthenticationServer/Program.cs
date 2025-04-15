@@ -23,7 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-       .AddRoles<IdentityRole>()
+       .AddRoles<IdentityRole>() // can phai AddRoles neu AddDefaultIdentity<IdentityUser>
        .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -73,6 +73,9 @@ builder.Services.AddOpenIddict()
                   .EnableTokenEndpointPassthrough()
                   .EnableUserInfoEndpointPassthrough()
                   .EnableStatusCodePagesIntegration();
+
+           // options.SetAccessTokenLifetime(TimeSpan.FromSeconds(10));
+           // options.SetRefreshTokenLifetime(TimeSpan.FromSeconds(10));
        });
 ;
 

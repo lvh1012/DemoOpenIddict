@@ -15,27 +15,49 @@
 @section Scripts
 {
     <script>
-        const loginBtn = $('#login-button');
-        const refreshBtn = $('#refresh-button');
-        const logoutBtn = $('#logout-button');
-        const token = $('#token');
+        const $login = $('#login-button');
+        const $refresh = $('#refresh-button');
+        const $logout = $('#logout-button');
+        const $token = $('#token');
 
         getUserInfo().then((u) => {
-            token.text(JSON.stringify(u));
+            // neu co token thi refresh
+            // nguoc lai thi login
+            if (u) {
+                refreshToken()
+                    .then((u) => {
+                        displayToken(u);
+                    })
+                    .catch((e) => {
+                        console.error('Error refreshing token:', e);
+                        login();
+                    });
+            } else {
+                login();
+            }
         });
 
-        loginBtn.on('click', (e) => {
+        $login.on('click', (e) => {
             login();
         })
 
-        logoutBtn.on('click', (e) => {
+        $logout.on('click', (e) => {
             logout();
         })
 
-        refreshBtn.on('click', (e) => {
-            refreshToken().then((u) => {
-                token.text(JSON.stringify(u));
-            });
+        $refresh.on('click', (e) => {
+            refreshToken()
+                .then((u) => {
+                    displayToken(u);
+                })
+                .catch((e) => {
+                    console.error('Error refreshing token:', e);
+                    login();
+                });
         })
+
+        function displayToken(t) {
+            $token.text(JSON.stringify(t));
+        }
     </script>
 }
