@@ -26,8 +26,9 @@ public class Worker(IServiceProvider serviceProvider) : IHostedService
                 PostLogoutRedirectUris = {new Uri("https://localhost:5010/SignOutCallback") },
                 Permissions =
                 {
-                    OpenIddictConstants.Permissions.Endpoints.Token,
-                    OpenIddictConstants.Permissions.Endpoints.Authorization,
+                    OpenIddictConstants.Permissions.Endpoints.Token, // lay refresh token
+                    OpenIddictConstants.Permissions.Endpoints.Authorization, // lay authoriztion code
+                    OpenIddictConstants.Permissions.Endpoints.EndSession, // logout
                     OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
                     OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
                     OpenIddictConstants.Permissions.ResponseTypes.Code,
