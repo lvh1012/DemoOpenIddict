@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Signin Silent Callback";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Signin Silent Callback.</p>
+
+@section Scripts
+{
+    <script>
+        (async () => {
+            try {
+                await userManager.signinsilentcallback();
+            } catch (e) {
+                console.error(e);
+            } finally {
+                window.location.replace('/Home/Index');
+            }
+        })();
+    </script>
+}

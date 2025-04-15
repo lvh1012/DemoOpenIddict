@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationServer", "AuthenticationServer\AuthenticationServer.csproj", "{995C2BB1-58FA-445B-89FE-69C588E93AC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateCertificate", "CreateCertificate\CreateCertificate.csproj", "{7EC37DAA-5F56-41EF-817F-04ECC27A2BE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsClient", "JsClient\JsClient.csproj", "{7A34202F-F561-4138-A717-701206962CDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{995C2BB1-58FA-445B-89FE-69C588E93AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995C2BB1-58FA-445B-89FE-69C588E93AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995C2BB1-58FA-445B-89FE-69C588E93AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995C2BB1-58FA-445B-89FE-69C588E93AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EC37DAA-5F56-41EF-817F-04ECC27A2BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC37DAA-5F56-41EF-817F-04ECC27A2BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC37DAA-5F56-41EF-817F-04ECC27A2BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC37DAA-5F56-41EF-817F-04ECC27A2BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A34202F-F561-4138-A717-701206962CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A34202F-F561-4138-A717-701206962CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A34202F-F561-4138-A717-701206962CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A34202F-F561-4138-A717-701206962CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

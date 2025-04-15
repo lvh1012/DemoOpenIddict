@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Sign out Callback";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Sign out Callback.</p>
+
+@section Scripts
+{
+    <script>
+        (async () => {
+            try {
+                await userManager.SignOutCallback();
+            } catch (e) {
+                console.error(e);
+            } finally {
+                window.location.replace('/Home/Index');
+            }
+        })();
+    </script>
+}
