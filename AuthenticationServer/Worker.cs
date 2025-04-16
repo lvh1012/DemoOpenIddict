@@ -22,20 +22,53 @@ public class Worker(IServiceProvider serviceProvider) : IHostedService
                 ClientType = OpenIddictConstants.ClientTypes.Public,
                 ConsentType = OpenIddictConstants.ConsentTypes.Implicit,
                 ApplicationType = OpenIddictConstants.ApplicationTypes.Web,
-                RedirectUris = { new Uri("https://localhost:5010/SigninCallback") ,new Uri("https://localhost:6000/SigninSilentCallback")},
-                PostLogoutRedirectUris = {new Uri("https://localhost:5010/SignOutCallback") },
+                RedirectUris = { new Uri("https://localhost:5010/SigninCallback"), new Uri("https://localhost:5010/SigninSilentCallback") },
+                PostLogoutRedirectUris = { new Uri("https://localhost:5010/SignOutCallback") },
                 Permissions =
                 {
                     OpenIddictConstants.Permissions.Endpoints.Token, // lay refresh token
                     OpenIddictConstants.Permissions.Endpoints.Authorization, // lay authoriztion code
                     OpenIddictConstants.Permissions.Endpoints.EndSession, // logout
+                    OpenIddictConstants.Permissions.Endpoints.Revocation, // Revoke tokens on signout
                     OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
                     OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
                     OpenIddictConstants.Permissions.ResponseTypes.Code,
-                    OpenIddictConstants.Permissions.Scopes.Profile,
-                    OpenIddictConstants.Permissions.Scopes.Roles,
-                    OpenIddictConstants.Permissions.Scopes.Email,
-                    OpenIddictConstants.Permissions.Scopes.Phone
+                    "scp:openid",            // 👈 Thêm thủ công
+                    "scp:profile",           // 👈 Thêm thủ công
+                    "scp:offline_access",    // 👈 Thêm thủ công
+                    "scp:email",
+                    "scp:roles",
+                    "scp:phone"
+                }
+            });
+        }
+
+        if (await manager.FindByClientIdAsync("mvc-client") is null)
+        {
+            await manager.CreateAsync(new OpenIddictApplicationDescriptor
+            {
+                ClientId = "mvc-client",
+                ClientSecret = "mvc-client",
+                ClientType = OpenIddictConstants.ClientTypes.Confidential,
+                ConsentType = OpenIddictConstants.ConsentTypes.Implicit,
+                ApplicationType = OpenIddictConstants.ApplicationTypes.Web,
+                RedirectUris = { new Uri("https://localhost:5020/SigninCallback"), new Uri("https://localhost:5020/SigninSilentCallback") },
+                PostLogoutRedirectUris = { new Uri("https://localhost:5020/SignOutCallback") },
+                Permissions =
+                {
+                    OpenIddictConstants.Permissions.Endpoints.Token, // lay refresh token
+                    OpenIddictConstants.Permissions.Endpoints.Authorization, // lay authoriztion code
+                    OpenIddictConstants.Permissions.Endpoints.EndSession, // logout
+                    OpenIddictConstants.Permissions.Endpoints.Revocation, // Revoke tokens on signout
+                    OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                    OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+                    OpenIddictConstants.Permissions.ResponseTypes.Code,
+                    "scp:openid",            // 👈 Thêm thủ công
+                    "scp:profile",           // 👈 Thêm thủ công
+                    "scp:offline_access",    // 👈 Thêm thủ công
+                    "scp:email",
+                    "scp:roles",
+                    "scp:phone"
                 }
             });
         }

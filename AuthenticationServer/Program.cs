@@ -47,7 +47,8 @@ builder.Services.AddOpenIddict()
            options.SetAuthorizationEndpointUris("connect/authorize")
                   .SetEndSessionEndpointUris("connect/logout")
                   .SetTokenEndpointUris("connect/token")
-                  .SetUserInfoEndpointUris("connect/userinfo");
+                  .SetUserInfoEndpointUris("connect/userinfo")
+                  .SetRevocationEndpointUris("connect/revocation");
 
            // Enable the client credentials flow.
            options.AllowClientCredentialsFlow()
@@ -56,7 +57,10 @@ builder.Services.AddOpenIddict()
                   .AllowRefreshTokenFlow();
 
            // Mark the "email", "profile" and "roles" scopes as supported scopes.
-           options.RegisterScopes(OpenIddictConstants.Permissions.Scopes.Phone, OpenIddictConstants.Permissions.Scopes.Email, OpenIddictConstants.Permissions.Scopes.Profile, OpenIddictConstants.Permissions.Scopes.Roles);
+           options.RegisterScopes(OpenIddictConstants.Permissions.Scopes.Phone,
+               OpenIddictConstants.Permissions.Scopes.Email,
+               OpenIddictConstants.Permissions.Scopes.Profile,
+               OpenIddictConstants.Permissions.Scopes.Roles);
 
            const string encryptionFileName = "EncryptionCertificate.pfx";
            const string signingFileName = "SigningCertificate.pfx";

@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateCertificate", "Create
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsClient", "JsClient\JsClient.csproj", "{7A34202F-F561-4138-A717-701206962CDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{33628DF7-3EAB-4CD6-A8F7-B01EB04C61F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcClient", "MvcClient\MvcClient.csproj", "{0F536585-3160-4929-9F6E-399E92E9D844}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{7A34202F-F561-4138-A717-701206962CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A34202F-F561-4138-A717-701206962CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A34202F-F561-4138-A717-701206962CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33628DF7-3EAB-4CD6-A8F7-B01EB04C61F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33628DF7-3EAB-4CD6-A8F7-B01EB04C61F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33628DF7-3EAB-4CD6-A8F7-B01EB04C61F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33628DF7-3EAB-4CD6-A8F7-B01EB04C61F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F536585-3160-4929-9F6E-399E92E9D844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F536585-3160-4929-9F6E-399E92E9D844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F536585-3160-4929-9F6E-399E92E9D844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F536585-3160-4929-9F6E-399E92E9D844}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

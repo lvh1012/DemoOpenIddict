@@ -14,6 +14,7 @@ public class AuthorizationController(
     IOpenIddictApplicationManager applicationManager,
     IOpenIddictAuthorizationManager authorizationManager,
     IOpenIddictScopeManager scopeManager,
+    IOpenIddictTokenManager tokenManager,
     SignInManager<IdentityUser> signInManager,
     UserManager<IdentityUser> userManager
 )
@@ -170,6 +171,8 @@ public class AuthorizationController(
     }
 
     [HttpGet("~/connect/logout")]
+    [HttpPost("~/connect/logout")]
+    [IgnoreAntiforgeryToken]
     public async Task<IActionResult> Logout()
     {
         // Ask ASP.NET Core Identity to delete the local and external cookies created
@@ -186,6 +189,41 @@ public class AuthorizationController(
             {
                 RedirectUri = "/"
             });
+    }
+
+    [HttpPost("~/connect/revocation")]
+    [IgnoreAntiforgeryToken]
+    public async Task<IActionResult> Revocation()
+    {
+        var request = HttpContext.GetOpenIddictServerRequest() ??
+                      throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
+
+        // Ensure the token is provided in the request.
+        if (string.IsNullOrEmpty(request.Token))
+        {
+            return BadRequest(new OpenIddictResponse
+            {
+                Error = OpenIddictConstants.Errors.InvalidRequest,
+                ErrorDescription = "The token is missing."
+            });
+        }
+
+        // Retrieve the token from the database.
+        var token = await tokenManager.FindByReferenceIdAsync(request.Token);
+
+        if (token is null)
+        {
+            return BadRequest(new OpenIddictResponse
+            {
+                Error = OpenIddictConstants.Errors.InvalidToken,
+                ErrorDescription = "The token is invalid or has already been revoked."
+            });
+        }
+
+        // Revoke the token.
+        await tokenManager.TryRevokeAsync(token);
+
+        return Ok();
     }
 
     [HttpPost("~/connect/token")]

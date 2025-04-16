@@ -1,10 +1,11 @@
 ﻿oidc.Log.setLogger(console);
 
-const url = window.location.origin
+const url = window.location.origin;
+const issuer = "https://localhost:5000";
 
 const userManager = new oidc.UserManager({
     // The authority URL of the OpenID Connect provider
-    authority: "https://localhost:5000",
+    authority: issuer,
 
     // The client ID registered with the OpenID Connect provider
     client_id: "js-client",
@@ -19,7 +20,7 @@ const userManager = new oidc.UserManager({
     response_type: "code",
 
     // The scopes requested for the token
-    scope: "openid offline_access",
+    scope: "openid profile offline_access",
 
     // The response mode for the authentication flow
     response_mode: "query",
@@ -62,6 +63,14 @@ const userManager = new oidc.UserManager({
 
     // Use local storage to store user state
     userStore: new oidc.WebStorageStateStore({store: window.localStorage}),
+
+    metadata: {
+        token_endpoint: issuer + "/connect/token",
+        revocation_endpoint: issuer + "/connect/revocation",
+        end_session_endpoint: issuer + "/connect/logout",
+        authorization_endpoint: issuer + "/connect/authorize",
+        userinfo_endpoint: issuer + "/connect/userinfo",
+    }
 });
 
 function getUserInfo() {
