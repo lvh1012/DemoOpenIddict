@@ -33,12 +33,7 @@ public class Worker(IServiceProvider serviceProvider) : IHostedService
                     OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
                     OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
                     OpenIddictConstants.Permissions.ResponseTypes.Code,
-                    "scp:openid",            // 👈 Thêm thủ công
-                    "scp:profile",           // 👈 Thêm thủ công
-                    "scp:offline_access",    // 👈 Thêm thủ công
-                    "scp:email",
-                    "scp:roles",
-                    "scp:phone"
+                    OpenIddictConstants.Permissions.Scopes.Profile
                 }
             });
         }
@@ -63,12 +58,7 @@ public class Worker(IServiceProvider serviceProvider) : IHostedService
                     OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
                     OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
                     OpenIddictConstants.Permissions.ResponseTypes.Code,
-                    "scp:openid",            // 👈 Thêm thủ công
-                    "scp:profile",           // 👈 Thêm thủ công
-                    "scp:offline_access",    // 👈 Thêm thủ công
-                    "scp:email",
-                    "scp:roles",
-                    "scp:phone"
+                    OpenIddictConstants.Permissions.Scopes.Profile
                 }
             });
         }

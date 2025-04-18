@@ -8,11 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddAuthentication(options =>
-       {
-           options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-       })
-
+builder.Services.AddAuthentication(options => { options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; })
        .AddCookie(options =>
        {
            options.LoginPath = "/LogIn";
@@ -22,18 +18,15 @@ builder.Services.AddAuthentication(options =>
        });
 
 builder.Services.AddOpenIddict()
-
-       // Register the OpenIddict core components.
-       .AddCore(options =>
-       {
-
-       })
-
        // Register the OpenIddict client components.
        .AddClient(options =>
        {
            // Note: this sample uses the code flow, but you can enable the other flows if necessary.
            options.AllowAuthorizationCodeFlow();
+
+           // Disable token storage, which is not necessary for non-interactive flows like
+           // grant_type=password, grant_type=client_credentials or grant_type=refresh_token.
+           options.DisableTokenStorage();
 
            const string encryptionFileName = "EncryptionCertificate.pfx";
            const string signingFileName = "SigningCertificate.pfx";
@@ -61,15 +54,6 @@ builder.Services.AddOpenIddict()
                Issuer = new Uri("https://localhost:5000/", UriKind.Absolute),
                ClientId = "mvc-client",
                ClientSecret = "mvc-client",
-               Scopes =
-               {
-                   "scp:openid",            // 👈 Thêm thủ công
-                   "scp:profile",           // 👈 Thêm thủ công
-                   "scp:offline_access",    // 👈 Thêm thủ công
-                   "scp:email",
-                   "scp:roles",
-                   "scp:phone"
-               },
 
                // Note: to mitigate mix-up attacks, it's recommended to use a unique redirection endpoint
                // URI per provider, unless all the registered providers support returning a special "iss"
